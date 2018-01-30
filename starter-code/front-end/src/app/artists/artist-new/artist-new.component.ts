@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistsService } from '../artists.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-artist-new',
@@ -11,7 +12,8 @@ export class ArtistNewComponent implements OnInit {
 	newArtist = <any>{};
 
   constructor(
-  	private artistsService : ArtistsService
+  	private artistsService : ArtistsService,
+    private router : Router
   ) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class ArtistNewComponent implements OnInit {
   			.subscribe(response => {
 			console.log(response.json());
 			let artist = response.json();
-			window.location.href = "/artists/" + artist.id;
+			this.router.navigate(["/artists/" + artist.id]);
 		})
   }
 

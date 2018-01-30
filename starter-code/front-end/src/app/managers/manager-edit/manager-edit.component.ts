@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ManagersService } from '../managers.service';
-import { ActivatedRoute }   from '@angular/router';
+import { ActivatedRoute, Router }   from '@angular/router';
 
 @Component({
   selector: 'app-manager-edit',
@@ -13,6 +13,7 @@ export class ManagerEditComponent implements OnInit {
 
   constructor(
     private route : ActivatedRoute,
+    private router : Router,
     private managersService : ManagersService
   ) { }
 
@@ -32,7 +33,7 @@ export class ManagerEditComponent implements OnInit {
     .subscribe(response => {
       console.log(response.json());
       let manager = response.json();
-      window.location.href = "/managers/" + manager.id;
+      this.router.navigate(["/managers/" + manager.id]);
     });  
   }
 

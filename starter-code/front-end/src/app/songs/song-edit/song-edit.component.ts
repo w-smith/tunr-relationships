@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SongsService } from '../songs.service';
-import { ActivatedRoute }   from '@angular/router';
+import { ActivatedRoute, Router }   from '@angular/router';
 
 @Component({
   selector: 'app-song-edit',
@@ -13,6 +13,7 @@ export class SongEditComponent implements OnInit {
 
   constructor(
     private route : ActivatedRoute,
+    private router : Router,
     private songsService : SongsService
   ) { }
 
@@ -32,7 +33,7 @@ export class SongEditComponent implements OnInit {
     .subscribe(response => {
       console.log(response.json());
       let song = response.json();
-      window.location.href = "/songs/" + song.id;
+      this.router.navigate(["/songs/" + song.id]);
     });  
   }
 

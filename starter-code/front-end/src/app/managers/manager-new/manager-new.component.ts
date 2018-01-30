@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ManagersService } from '../managers.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manager-new',
@@ -11,7 +12,8 @@ export class ManagerNewComponent implements OnInit {
 	newManager = <any>{};
 
     constructor(
-      private managersService : ManagersService
+      private managersService : ManagersService,
+      private router : Router
     ) { }
 
     ngOnInit() {
@@ -25,7 +27,7 @@ export class ManagerNewComponent implements OnInit {
           .subscribe(response => {
         console.log(response.json());
         let manager = response.json();
-        window.location.href = "/managers/" + manager.id;
+        this.router.navigate(["/managers/" + manager.id]);
       })
     }
 
