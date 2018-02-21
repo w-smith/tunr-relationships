@@ -28,7 +28,7 @@ export class ArtistEditComponent implements OnInit {
   }
 
   updateArtist(updatedArtist) {
-    console.log("updating artist yo!");
+    console.log("updating artist");
     this.artistsService.updateArtist(updatedArtist)
     .subscribe(response => {
       console.log(response.json());
